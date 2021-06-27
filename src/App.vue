@@ -188,8 +188,13 @@ body {
   margin: 0;
 }
 
+@font-face {
+  font-family: "Bitracing";
+  src: url("~@/assets/fonts/BitracingGX.ttf") format("truetype-variations");
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Bitracing", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -245,6 +250,7 @@ body {
 }
 
 .button {
+  font-family: "Bitracing";
   background-color: #dcdcdc; /* Green */
   border-style: solid;
   border-width: 1px;
@@ -324,6 +330,7 @@ input[type="color"]::-webkit-color-swatch {
   text-align: center;
 }
 #text-input {
+  font-family: "Bitracing";
   width: 99%;
   -webkit-appearance: none;
   border: none;
