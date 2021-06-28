@@ -71,74 +71,171 @@
         <div id="slider-text">{{ speed }} km/h</div>
       </div>
       <div id="text-input-container">
-        <input type="text" placeholder="type..." id="text-input" :style="{ color: color, fontVariationSettings: `'slnt' ${speed}` }" />
+        <input
+          type="text"
+          placeholder="type..."
+          id="text-input"
+          :style="[
+            {
+              color: color,
+              fontVariationSettings: `'slnt' ${speed}`,
+            },
+            speed >= 1 ? `animation: slider ${30 - 29.9 / 900 * speed }s linear infinite` : '',
+          ]"
+        />
       </div>
     </div>
     <div v-else id="racing-container">
-      <div class="racing-row" style="lineHeight: 39px">
-        <h3 class="racing-text" style="right: 18px; fontSize: 64px; lineHeight: 0.62em; fontVariationSettings: 'slnt' 10">
+      <div class="racing-row" style="lineheight: 39px">
+        <h3
+          class="racing-text"
+          :style="[
+            {
+              left: '0',
+              fontSize: '64px',
+              lineHeight: '0.62em',
+              fontVariationSettings: `'slnt' 10`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 20s linear infinite'
+              : '',
+          ]"
+        >
           HUMAN RUNNING
         </h3>
         <div class="racing-speed">10km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 21px">
+      <div class="racing-row" style="lineheight: 21px">
         <h3
           class="racing-text"
-          style="left: 110px; fontSize: 34px; lineHeight: 0.66em; fontVariationSettings: 'slnt' 20"
+          :style="[
+            {
+              left: '0',
+              fontSize: '34px',
+              lineHeight: '0.66em',
+              fontVariationSettings: `'slnt' 20`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 18s linear infinite'
+              : '',
+          ]"
         >
           HIPPOPOTAMUS
         </h3>
         <div class="racing-speed">20km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 21px">
+      <div class="racing-row" style="lineheight: 21px">
         <h3
           class="racing-text"
-          style="right: 90px; fontSize: 34px; lineHeight: 0.6em; fontVariationSettings: 'slnt' 50"
+          :style="[
+            {
+              left: '0',
+              fontSize: '34px',
+              lineHeight: '0.6em',
+              fontVariationSettings: `'slnt' 50`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 13s linear infinite'
+              : '',
+          ]"
         >
           TIGER
         </h3>
         <div class="racing-speed">50km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 40px">
+      <div class="racing-row" style="lineheight: 40px">
         <h3
           class="racing-text"
-          style="left: 25px; fontSize: 64px; lineHeight: 0.64em; fontVariationSettings: 'slnt' 80"
+          :style="[
+            {
+              left: '0',
+              fontSize: '64px',
+              lineHeight: '0.64em',
+              fontVariationSettings: `'slnt' 80`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 10s linear infinite'
+              : '',
+          ]"
         >
           LION
         </h3>
         <div class="racing-speed">80km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 62px">
+      <div class="racing-row" style="lineheight: 62px">
         <h3
           class="racing-text"
-          style="right: 70px; fontSize: 100px; lineHeight: 0.61em; fontVariationSettings: 'slnt' 160"
+          :style="[
+            {
+              left: '0',
+              fontSize: '107px',
+              lineHeight: '0.61em',
+              fontVariationSettings: `'slnt' 160`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 6s linear infinite'
+              : '',
+          ]"
         >
           SWIFT
         </h3>
         <div class="racing-speed">160km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 47px">
+      <div class="racing-row" style="lineheight: 47px">
         <h3
           class="racing-text"
-          style="left: 80px; fontSize: 75px; lineHeight: 0.64em; fontVariationSettings: 'slnt' 260"
+          :style="[
+            {
+              left: '0',
+              fontSize: '75px',
+              lineHeight: '0.64em',
+              fontVariationSettings: `'slnt' 260`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 3s linear infinite'
+              : '',
+          ]"
         >
           FASTEST BICYCLE
         </h3>
         <div class="racing-speed">260km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 53px">
+      <div class="racing-row" style="lineheight: 53px">
         <h3
           class="racing-text"
-          style="right: 50px; fontSize: 87px; lineHeight: 0.61em; fontVariationSettings: 'slnt' 370"
+          :style="[
+            {
+              left: '0',
+              fontSize: '87px',
+              lineHeight: '0.61em',
+              fontVariationSettings: `'slnt' 370`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 2s linear infinite'
+              : '',
+          ]"
         >
           FORMULA ONE
         </h3>
         <div class="racing-speed">370km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 46px; borderBottom: 1px solid black;">
+      <div
+        class="racing-row"
+        style="lineheight: 46px; borderbottom: 1px solid black"
+      >
         <h3
           class="racing-text"
-          style="left: 30px; fontSize: 75px; lineHeight: 0.63em; fontVariationSettings: 'slnt' 900"
+          :style="[
+            {
+              left: '0',
+              fontSize: '75px',
+              lineHeight: '0.63em',
+              fontVariationSettings: `'slnt' 900`,
+            },
+            racingState !== 'stopped'
+              ? 'animation: moving 0.5s linear infinite'
+              : '',
+          ]"
         >
           AURBUS
         </h3>
@@ -186,6 +283,7 @@ export default defineComponent({
 body {
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
 @font-face {
@@ -203,7 +301,6 @@ body {
   font-weight: normal;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -329,17 +426,18 @@ input[type="color"]::-webkit-color-swatch {
   background-color: rgb(240, 73, 231);
 }
 #text-input-container {
-  margin: 60px 26px;
+  margin: 32px 26px;
   background-color: transparent;
-  text-align: center;
 }
+
 #text-input {
   font-family: "Bitracing";
   width: 99%;
   -webkit-appearance: none;
   border: none;
   outline: none;
-  text-align: center;
+  text-align: start;
+  position: relative;
   font-size: 250px;
   background-color: transparent;
 }
@@ -365,7 +463,21 @@ input[type="color"]::-webkit-color-swatch {
   margin-top: 0;
   margin-bottom: 0;
   position: absolute;
-  -webkit-animation: moving 5s infinite;
-  animation: moving 5s infinite;
+}
+@keyframes moving {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100vw);
+  }
+}
+@keyframes slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 </style>
