@@ -36,7 +36,7 @@
             class="button"
             style="color: black"
           >
-            {{ racingState === "stopped" ? "PLAY" : "STOP" }}
+            {{ racingState === "stopped" ? "GO" : "STOP" }}
           </button>
           <div id="color-buttons" v-else>
             <input
@@ -65,80 +65,80 @@
           type="range"
           v-model="speed"
           min="0"
-          max="100"
+          max="900"
           step="1"
         />
         <div id="slider-text">{{ speed }} km/h</div>
       </div>
       <div id="text-input-container">
-        <input type="text" placeholder="type..." id="text-input" :style="{ color: color }" />
+        <input type="text" placeholder="type..." id="text-input" :style="{ color: color, fontVariationSettings: `'slnt' ${speed}` }" />
       </div>
     </div>
     <div v-else id="racing-container">
-      <div class="racing-row" style="lineHeight: 45px">
-        <h3 class="racing-text" style="right: 18px; fontSize: 64px">
+      <div class="racing-row" style="lineHeight: 41.5px">
+        <h3 class="racing-text" style="right: 18px; fontSize: 64px; lineHeight: 0.66em; fontVariationSettings: 'slnt' 10">
           HUMAN RUNNING
         </h3>
         <div class="racing-speed">10km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 25px">
+      <div class="racing-row" style="lineHeight: 22px">
         <h3
           class="racing-text"
-          style="left: 110px; fontSize: 34px; lineHeight: 0.78em"
+          style="left: 110px; fontSize: 34px; lineHeight: 0.7em; fontVariationSettings: 'slnt' 20"
         >
           HIPPOPOTAMUS
         </h3>
         <div class="racing-speed">20km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 24px">
+      <div class="racing-row" style="lineHeight: 21px">
         <h3
           class="racing-text"
-          style="right: 90px; fontSize: 34px; lineHeight: 0.76em"
+          style="right: 90px; fontSize: 34px; lineHeight: 0.6em; fontVariationSettings: 'slnt' 50"
         >
           TIGER
         </h3>
         <div class="racing-speed">50km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 46px">
+      <div class="racing-row" style="lineHeight: 42px">
         <h3
           class="racing-text"
-          style="left: 25px; fontSize: 64px; lineHeight: 0.75em"
+          style="left: 25px; fontSize: 64px; lineHeight: 0.68em; fontVariationSettings: 'slnt' 80"
         >
           LION
         </h3>
         <div class="racing-speed">80km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 73px">
+      <div class="racing-row" style="lineHeight: 64px">
         <h3
           class="racing-text"
-          style="right: 70px; fontSize: 100px; lineHeight: 0.74em"
+          style="right: 70px; fontSize: 100px; lineHeight: 0.64em; fontVariationSettings: 'slnt' 160"
         >
           SWIFT
         </h3>
         <div class="racing-speed">160km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 54px">
+      <div class="racing-row" style="lineHeight: 49px">
         <h3
           class="racing-text"
-          style="left: 80px; fontSize: 75px; lineHeight: 0.75em"
+          style="left: 80px; fontSize: 75px; lineHeight: 0.66em; fontVariationSettings: 'slnt' 260"
         >
           FASTEST BICYCLE
         </h3>
         <div class="racing-speed">260km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 61px">
+      <div class="racing-row" style="lineHeight: 56px">
         <h3
           class="racing-text"
-          style="right: 50px; fontSize: 87px; lineHeight: 0.75em"
+          style="right: 50px; fontSize: 87px; lineHeight: 0.65em; fontVariationSettings: 'slnt' 370"
         >
           FORMULA ONE
         </h3>
         <div class="racing-speed">370km/h</div>
       </div>
-      <div class="racing-row" style="lineHeight: 53px; borderBottom: 1px solid black;">
+      <div class="racing-row" style="lineHeight: 49px; borderBottom: 1px solid black;">
         <h3
           class="racing-text"
-          style="left: 30px; fontSize: 75px; lineHeight: 0.74em;"
+          style="left: 30px; fontSize: 75px; lineHeight: 0.68em; fontVariationSettings: 'slnt' 900"
         >
           AURBUS
         </h3>
@@ -193,6 +193,11 @@ body {
   src: url("~@/assets/fonts/BitracingGX.ttf") format("truetype-variations");
 }
 
+@font-face {
+  font-family: "Trispace";
+  src: url("~@/assets/fonts/Trispace.ttf") format("truetype-variations");
+}
+
 #app {
   font-family: "Bitracing", Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -202,6 +207,7 @@ body {
 #container {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,12 +359,12 @@ input[type="color"]::-webkit-color-swatch {
   font-size: 16px;
   margin-left: 45px;
   color: cyan;
+  z-index: 20;
   text-shadow: #333333 1px 1px 3px;
 }
 .racing-text {
   margin-top: 0;
   margin-bottom: 0;
   position: absolute;
-  line-height: 0.7em;
 }
 </style>
