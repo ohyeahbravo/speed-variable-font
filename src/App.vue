@@ -221,6 +221,7 @@ body {
   top: 5px;
   left: 0;
   width: 100%;
+  visibility: hidden;
 }
 
 .header-line {
@@ -364,5 +365,7 @@ input[type="color"]::-webkit-color-swatch {
   margin-top: 0;
   margin-bottom: 0;
   position: absolute;
+  -webkit-animation: moving 5s infinite;
+  animation: moving 5s infinite;
 }
 </style>
