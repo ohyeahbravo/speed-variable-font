@@ -86,7 +86,7 @@
       </div>
     </div>
     <div v-else id="racing-container">
-      <div class="racing-row" style="lineheight: 39px">
+      <div class="racing-row" style="lineHeight: 39px">
         <h3
           class="racing-text"
           :style="[
@@ -105,7 +105,7 @@
         </h3>
         <div class="racing-speed">10km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 21px">
+      <div class="racing-row" style="lineHeight: 21px">
         <h3
           class="racing-text"
           :style="[
@@ -124,7 +124,7 @@
         </h3>
         <div class="racing-speed">20km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 21px">
+      <div class="racing-row" style="lineHeight: 21px">
         <h3
           class="racing-text"
           :style="[
@@ -143,7 +143,7 @@
         </h3>
         <div class="racing-speed">50km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 40px">
+      <div class="racing-row" style="lineHeight: 40px">
         <h3
           class="racing-text"
           :style="[
@@ -162,7 +162,7 @@
         </h3>
         <div class="racing-speed">80km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 62px">
+      <div class="racing-row" style="lineHeight: 62px">
         <h3
           class="racing-text"
           :style="[
@@ -181,7 +181,7 @@
         </h3>
         <div class="racing-speed">160km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 47px">
+      <div class="racing-row" style="lineHeight: 47px">
         <h3
           class="racing-text"
           :style="[
@@ -200,7 +200,7 @@
         </h3>
         <div class="racing-speed">260km/h</div>
       </div>
-      <div class="racing-row" style="lineheight: 53px">
+      <div class="racing-row" style="lineHeight: 53px">
         <h3
           class="racing-text"
           :style="[
@@ -221,7 +221,7 @@
       </div>
       <div
         class="racing-row"
-        style="lineheight: 46px; borderbottom: 1px solid black"
+        style="lineHeight: 46px; borderbottom: 1px solid black"
       >
         <h3
           class="racing-text"
