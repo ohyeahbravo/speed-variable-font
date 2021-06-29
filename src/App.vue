@@ -2,58 +2,44 @@
   <div id="container" :style="{ backgroundColor: bgColor, color: color }">
     <!-- Header -->
     <div id="header">
-      <div id="header-lines">
-        <div class="header-line" />
-        <div class="header-line" />
-        <div class="header-line" />
-        <div class="header-line" />
-        <div class="header-line" />
-        <div class="header-line" />
+      <div
+        class="button-wrapper"
+        :style="{ backgroundColor: bgColor, marginLeft: `20px` }"
+      >
+        <button @click.prevent="changeMode" class="button" style="color: blue">
+          {{ mode.toUpperCase() }}
+        </button>
       </div>
-      <div id="header-content">
-        <div
-          class="button-wrapper"
-          :style="{ backgroundColor: bgColor, marginLeft: `20px` }"
+      <div id="header-title" :style="{ backgroundColor: bgColor }">
+        BITRACING
+      </div>
+      <div
+        class="button-wrapper"
+        :style="{ backgroundColor: bgColor, marginRight: `20px` }"
+      >
+        <button
+          v-if="mode === 'racing'"
+          @click.prevent="changeRacingState"
+          class="button"
+          style="color: black"
         >
-          <button
-            @click.prevent="changeMode"
-            class="button"
-            style="color: blue"
-          >
-            {{ mode.toUpperCase() }}
-          </button>
-        </div>
-        <div id="header-title" :style="{ backgroundColor: bgColor }">
-          BITRACING
-        </div>
-        <div
-          class="button-wrapper"
-          :style="{ backgroundColor: bgColor, marginRight: `20px` }"
-        >
-          <button
-            v-if="mode === 'racing'"
-            @click.prevent="changeRacingState"
-            class="button"
-            style="color: black"
-          >
-            {{ racingState === "stopped" ? "GO" : "STOP" }}
-          </button>
-          <div id="color-buttons" v-else>
-            <input
-              type="color"
-              class="color-input"
-              id="input-bgColor"
-              name="input-bgColor"
-              v-model="bgColor"
-            />
-            <input
-              type="color"
-              class="color-input"
-              id="input-color"
-              name="input-color"
-              v-model="color"
-            />
-          </div>
+          {{ racingState === "stopped" ? "GO" : "STOP" }}
+        </button>
+        <div id="color-buttons" v-else>
+          <input
+            type="color"
+            class="color-input"
+            id="input-bgColor"
+            name="input-bgColor"
+            v-model="bgColor"
+          />
+          <input
+            type="color"
+            class="color-input"
+            id="input-color"
+            name="input-color"
+            v-model="color"
+          />
         </div>
       </div>
     </div>
@@ -80,7 +66,11 @@
               color: color,
               fontVariationSettings: `'slnt' ${speed}`,
             },
-            speed >= 1 ? `animation: slider ${30 - 29.9 / 900 * speed }s linear infinite` : '',
+            speed >= 1
+              ? `animation: slider ${
+                  30 - (29.9 / 900) * speed
+                }s linear infinite`
+              : '',
           ]"
         />
       </div>
@@ -307,36 +297,13 @@ body {
 }
 
 #header {
-  margin: 40px auto;
-  width: 98%;
-  height: auto;
-  position: relative;
-}
-
-#header-lines {
-  position: absolute;
-  top: 5px;
-  left: 0;
+  padding: 40px 15px;
   width: 100%;
-  visibility: hidden;
-}
-
-.header-line {
-  height: 0;
-  border-top: 1px solid #a5a5a5;
-  margin: 3px;
-}
-
-#header-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
 }
 
 #header-title {
