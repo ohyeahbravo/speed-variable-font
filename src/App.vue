@@ -53,6 +53,7 @@
           min="0"
           max="900"
           step="1"
+          @change="getOverflow"
         />
         <div id="slider-text">{{ speed }} km/h</div>
       </div>
@@ -81,7 +82,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '64px',
               lineHeight: '0.62em',
               fontVariationSettings: `'slnt' 10`,
@@ -100,7 +101,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '34px',
               lineHeight: '0.66em',
               fontVariationSettings: `'slnt' 20`,
@@ -119,7 +120,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '34px',
               lineHeight: '0.6em',
               fontVariationSettings: `'slnt' 50`,
@@ -138,7 +139,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '64px',
               lineHeight: '0.64em',
               fontVariationSettings: `'slnt' 80`,
@@ -157,7 +158,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '107px',
               lineHeight: '0.61em',
               fontVariationSettings: `'slnt' 160`,
@@ -176,7 +177,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '75px',
               lineHeight: '0.64em',
               fontVariationSettings: `'slnt' 260`,
@@ -195,7 +196,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '87px',
               lineHeight: '0.61em',
               fontVariationSettings: `'slnt' 370`,
@@ -217,7 +218,7 @@
           class="racing-text"
           :style="[
             {
-              left: '0',
+              right: '0',
               fontSize: '75px',
               lineHeight: '0.63em',
               fontVariationSettings: `'slnt' 900`,
@@ -236,7 +237,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
   name: "App",
@@ -246,6 +247,7 @@ export default defineComponent({
     const mode = ref("racing");
     const racingState = ref("stopped");
     const speed = ref(0);
+    const overflow = ref(0);
 
     function changeMode() {
       mode.value = mode.value === "racing" ? "running" : "racing";
@@ -256,7 +258,18 @@ export default defineComponent({
         racingState.value === "stopped" ? "playing" : "stopped";
     }
 
+    function getOverflow() {
+      const element = document.querySelector("#text-input");
+      overflow.value = element.scrollWidth - element.clientWidth;
+      console.log(overflow.value)
+    }
+
+    watch(overflow, (newOverflow) => {
+      console.log(newOverflow);
+    })
+
     return {
+      overflow,
       bgColor,
       color,
       mode,
@@ -264,6 +277,7 @@ export default defineComponent({
       changeRacingState,
       racingState,
       speed,
+      getOverflow,
     };
   },
 });
@@ -297,7 +311,7 @@ body {
 }
 
 #header {
-  padding: 40px 15px;
+  padding: 40px 0;
   width: 100%;
   height: auto;
   display: flex;
@@ -353,7 +367,7 @@ input[type="color"]::-webkit-color-swatch {
   display: flex;
   flex-direction: column;
   margin: 20px auto;
-  width: 98%;
+  width: 100%;
 }
 
 #slider-container {
@@ -399,14 +413,18 @@ input[type="color"]::-webkit-color-swatch {
 
 #text-input {
   font-family: "Bitracing";
-  width: 99%;
+  width: 100%;
   -webkit-appearance: none;
   border: none;
   outline: none;
-  text-align: start;
+  text-align: end;
   position: relative;
   font-size: 250px;
   background-color: transparent;
+  overflow: visible;
+  /* outline: 1px dashed black; */
+  /* outline-offset: -50px;
+  padding-left: 50px; */
 }
 #racing-container {
   width: 100%;
@@ -436,7 +454,7 @@ input[type="color"]::-webkit-color-swatch {
     transform: translateX(0);
   }
   to {
-    transform: translateX(100vw);
+    transform: translateX(-100vw);
   }
 }
 @keyframes slider {
@@ -444,7 +462,7 @@ input[type="color"]::-webkit-color-swatch {
     transform: translateX(0);
   }
   to {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 }
 </style>
