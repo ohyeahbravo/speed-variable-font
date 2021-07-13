@@ -15,7 +15,13 @@
         </a>
         <a @click="changeMode" style="cursor: pointer">
           <img
+          v-if="mode==='racing'"
             src="@/assets/images/speed-comparison.svg"
+            style="width: auto; height: 45px; object-fit: contain"
+          />
+          <img
+          v-else
+            src="@/assets/images/type-yourself.svg"
             style="width: auto; height: 45px; object-fit: contain"
           />
         </a>
@@ -47,7 +53,7 @@
             },
             speed >= 1
               ? `animation: slider ${
-                  30 - (29.9 / 900) * speed
+                  30 - (29.9 / 900) * speed * 0.98
                 }s linear infinite`
               : '',
           ]"
@@ -303,9 +309,9 @@
       <div style="display: block; line-height: 24px">
         <p style="margin: 0 15px 0 0; text-align: left; letter-spacing: 0.9px">
           <strong>Bitracing</strong> is a typeface that expresses
-          <i>speed</i> with letters. the basic shape of the typeface is inspired
+          <i>speed</i> with letters. The basic shape of the typeface is inspired
           by motion blur, which graphically depicts the visual effects of
-          movement. this is a variable font with speeds from 0 to 900km/h as the
+          movement. This is a variable font with speeds from 0 to 900 km/h as the
           axis. As the speed increases, the typeface becomes increasingly
           illegible.
         </p>
@@ -428,7 +434,7 @@ body {
 }
 
 .button-wrapper {
-  padding-top: 34px;
+  padding-top: 15px;
   padding-right: 35px;
   flex-direction: column;
   align-items: center;
