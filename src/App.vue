@@ -1,46 +1,24 @@
 <template>
-  <div id="container" :style="{ backgroundColor: bgColor, color: color }">
+  <div id="container">
     <!-- Header -->
     <div id="header">
-      <div
-        class="button-wrapper"
-        :style="{ backgroundColor: bgColor, marginLeft: `20px` }"
-      >
-        <button @click.prevent="changeMode" class="button" style="color: blue">
-          {{ mode.toUpperCase() }}
-        </button>
-      </div>
-      <div id="header-title" :style="{ backgroundColor: bgColor }">
-        BITRACING
-      </div>
-      <div
-        class="button-wrapper"
-        :style="{ backgroundColor: bgColor, marginRight: `20px` }"
-      >
-        <button
-          v-if="mode === 'racing'"
-          @click.prevent="changeRacingState"
-          class="button"
-          style="color: black"
+      <div id="header-title">BITRACING</div>
+      <div class="button-wrapper">
+        <a
+          @click="toggleAboutDialog"
+          style="margin-right: 15px; cursor: pointer"
         >
-          {{ racingState === "stopped" ? "GO" : "STOP" }}
-        </button>
-        <div id="color-buttons" v-else>
-          <input
-            type="color"
-            class="color-input"
-            id="input-bgColor"
-            name="input-bgColor"
-            v-model="bgColor"
+          <img
+            src="@/assets/images/about.svg"
+            style="height: 45px; width: auto; object-fit: contain"
           />
-          <input
-            type="color"
-            class="color-input"
-            id="input-color"
-            name="input-color"
-            v-model="color"
+        </a>
+        <a @click="changeMode" style="cursor: pointer">
+          <img
+            src="@/assets/images/speed-comparison.svg"
+            style="width: auto; height: 45px; object-fit: contain"
           />
-        </div>
+        </a>
       </div>
     </div>
     <!-- Main -->
@@ -62,9 +40,9 @@
           type="text"
           placeholder="type..."
           id="text-input"
+          spellcheck="false"
           :style="[
             {
-              color: color,
               fontVariationSettings: `'slnt' ${speed}`,
             },
             speed >= 1
@@ -77,14 +55,15 @@
       </div>
     </div>
     <div v-else id="racing-container">
-      <div class="racing-row" style="lineHeight: 39px">
+      <div class="racing-row">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '64px',
-              lineHeight: '0.62em',
+              right: '-800px',
+              fontSize: '85px',
+              color: 'rgb(0, 255, 0)',
+              lineHeight: '0.64em',
               fontVariationSettings: `'slnt' 10`,
             },
             racingState !== 'stopped'
@@ -94,16 +73,25 @@
         >
           HUMAN RUNNING
         </h3>
-        <div class="racing-speed">10km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/10km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/10km.png"
+            style="width: auto; height: 53px; object-fit: contain; margin-left: 15px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 21px">
+      <div class="racing-row">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '34px',
-              lineHeight: '0.66em',
+              right: '-670px',
+              fontSize: '85px',
+              lineHeight: '0.63em',
               fontVariationSettings: `'slnt' 20`,
             },
             racingState !== 'stopped'
@@ -111,18 +99,28 @@
               : '',
           ]"
         >
-          HIPPOPOTAMUS
+          BLACK MAMBA
         </h3>
-        <div class="racing-speed">20km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/20km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/20km.png"
+            style="width: auto; height: 54px; object-fit: contain; margin-left: 780px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 21px">
+      <div class="racing-row" :style="{ lineHeight: '53px' }">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '34px',
-              lineHeight: '0.6em',
+              right: '-310px',
+              fontSize: '85px',
+              color: 'rgb(0, 255, 0)',
+              lineHeight: '0.64em',
               fontVariationSettings: `'slnt' 50`,
             },
             racingState !== 'stopped'
@@ -132,16 +130,25 @@
         >
           TIGER
         </h3>
-        <div class="racing-speed">50km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/50km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/50km.png"
+            style="width: auto; height: 53px; object-fit: contain; margin-left: 450px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 40px">
+      <div class="racing-row">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '64px',
-              lineHeight: '0.64em',
+              right: '-250px',
+              fontSize: '85px',
+              lineHeight: '0.63em',
               fontVariationSettings: `'slnt' 80`,
             },
             racingState !== 'stopped'
@@ -151,17 +158,27 @@
         >
           LION
         </h3>
-        <div class="racing-speed">80km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/80km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/80km.png"
+            style="width: auto; height: 54px; object-fit: contain; margin-left: 270px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 62px">
+      <div class="racing-row">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '107px',
-              lineHeight: '0.61em',
-              fontVariationSettings: `'slnt' 160`,
+              right: '-320px',
+              fontSize: '85px',
+              color: 'rgb(0, 255, 0)',
+              lineHeight: '0.64em',
+              fontVariationSettings: `'slnt' 170`,
             },
             racingState !== 'stopped'
               ? 'animation: moving 6s linear infinite'
@@ -170,68 +187,154 @@
         >
           SWIFT
         </h3>
-        <div class="racing-speed">160km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/170km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/170km.png"
+            style="width: auto; height: 53px; object-fit: contain; margin-left: 720px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 47px">
+      <div class="racing-row">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '75px',
-              lineHeight: '0.64em',
-              fontVariationSettings: `'slnt' 260`,
+              right: '-900px',
+              fontSize: '85px',
+              lineHeight: '0.63em',
+              fontVariationSettings: `'slnt' 300`,
             },
             racingState !== 'stopped'
               ? 'animation: moving 3s linear infinite'
               : '',
           ]"
         >
-          FASTEST BICYCLE
+          FORMULA 1 CAR
         </h3>
-        <div class="racing-speed">260km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/300km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/300km.png"
+            style="width: auto; height: 54px; object-fit: contain; margin-left: 620px;"
+          />
+        </div>
       </div>
-      <div class="racing-row" style="lineHeight: 53px">
+      <div class="racing-row" :style="{ lineHeight: '53px' }">
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '87px',
-              lineHeight: '0.61em',
-              fontVariationSettings: `'slnt' 370`,
+              right: '-1050px',
+              fontSize: '85px',
+              color: 'rgb(0, 255, 0)',
+              lineHeight: '0.63em',
+              fontVariationSettings: `'slnt' 420`,
             },
             racingState !== 'stopped'
               ? 'animation: moving 2s linear infinite'
               : '',
           ]"
         >
-          FORMULA ONE
+          BUGATTI VEYRON
         </h3>
-        <div class="racing-speed">370km/h</div>
+        <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/420km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/420km.png"
+            style="width: auto; height: 53px; object-fit: contain; margin-left: 90px;"
+          />
+        </div>
       </div>
       <div
         class="racing-row"
-        style="lineHeight: 46px; borderbottom: 1px solid black"
+        style="lineHeight: 53px;"
       >
         <h3
           class="racing-text"
           :style="[
             {
-              right: '0',
-              fontSize: '75px',
+              right: '-600px',
+              fontSize: '85px',
               lineHeight: '0.63em',
               fontVariationSettings: `'slnt' 900`,
             },
             racingState !== 'stopped'
-              ? 'animation: moving 0.5s linear infinite'
+              ? 'animation: moving 1s linear infinite'
               : '',
           ]"
         >
           AURBUS
         </h3>
-        <div class="racing-speed">900km/h</div>
+       <div class="racing-speed" :style="{ height: '53px' }">
+          <img
+            src="@/assets/images/900km.svg"
+            style="width: auto; height: 45px; object-fit: contain; margin-top: 4px; z-index: 40;"
+          />
+          <img
+            src="@/assets/images/900km.png"
+            style="width: auto; height: 54px; object-fit: contain; margin-left: 880px;"
+          />
+        </div>
       </div>
+      <div
+        class="racing-row"
+        style="padding: 30px; display: flex; align-items: center; justify-content: center;"
+      >
+      <img
+            src="@/assets/images/ending.svg"
+            style="width: 100%; height: auto; object-fit: fill;"
+          />
+      </div>
+    </div>
+  </div>
+  <!-- About Dialog -->
+  <div v-if="dialogOpen" id="dialog">
+    <div style="display: flex; flex-direction: row; align-items: start">
+      <div style="display: block; line-height: 24px">
+        <p style="margin: 0 15px 0 0; text-align: left; letter-spacing: 0.9px">
+          <strong>Bitracing</strong> is a typeface that expresses
+          <i>speed</i> with letters. the basic shape of the typeface is inspired
+          by motion blur, which graphically depicts the visual effects of
+          movement. this is a variable font with speeds from 0 to 900km/h as the
+          axis. As the speed increases, the typeface becomes increasingly
+          illegible.
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: start">
+        <img
+          src="@/assets/images/about1.png"
+          style="width: 270px; height: auto; object-fit: contain"
+        />
+        <p style="font-size: 8pt; margin: 0; padding-top: 3px">
+          © David Ramos/Getty Images
+        </p>
+      </div>
+    </div>
+    <img
+      src="@/assets/images/about2.svg"
+      style="width: 650px; height: auto; object-fit: cover; margin-top: 15px"
+    />
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <p>Designed by Hyun-jeong Cho</p>
+      <p style="padding-left: 10px">zo-hj.com</p>
+      <p>© 2021</p>
     </div>
   </div>
 </template>
@@ -242,42 +345,39 @@ import { defineComponent, ref, watch } from "vue";
 export default defineComponent({
   name: "App",
   setup() {
-    const bgColor = ref("#dcdcdc");
-    const color = ref("#0000ff");
     const mode = ref("racing");
-    const racingState = ref("stopped");
+    const racingState = ref("playing");
     const speed = ref(0);
     const overflow = ref(0);
+    const dialogOpen = ref(false);
 
     function changeMode() {
       mode.value = mode.value === "racing" ? "running" : "racing";
     }
 
-    function changeRacingState() {
-      racingState.value =
-        racingState.value === "stopped" ? "playing" : "stopped";
-    }
-
     function getOverflow() {
       const element = document.querySelector("#text-input");
       overflow.value = element.scrollWidth - element.clientWidth;
-      console.log(overflow.value)
+      console.log(overflow.value);
     }
 
     watch(overflow, (newOverflow) => {
       console.log(newOverflow);
-    })
+    });
+
+    function toggleAboutDialog() {
+      dialogOpen.value = !dialogOpen.value;
+    }
 
     return {
       overflow,
-      bgColor,
-      color,
       mode,
       changeMode,
-      changeRacingState,
       racingState,
       speed,
       getOverflow,
+      toggleAboutDialog,
+      dialogOpen,
     };
   },
 });
@@ -308,10 +408,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
 }
 
 #header {
-  padding: 40px 0;
+  margin: 0;
   width: 100%;
   height: auto;
   display: flex;
@@ -321,13 +422,17 @@ body {
 }
 
 #header-title {
-  color: red;
-  padding: 5px 10px;
+  color: black;
+  padding: 30px;
   font-size: 24px;
 }
 
 .button-wrapper {
-  padding: 0 6px;
+  padding-top: 34px;
+  padding-right: 35px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .button {
@@ -342,6 +447,7 @@ body {
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
+  color: black;
 }
 
 #color-buttons {
@@ -363,6 +469,21 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
   border: 1px solid black;
 }
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: black;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: black;
+}
+
+::placeholder {
+  color: black;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -373,14 +494,10 @@ input[type="color"]::-webkit-color-swatch {
 #slider-container {
   margin: 0 26px;
   padding: 3px 8px;
-  background-color: #dcdcdc;
-  border-style: solid;
-  border-width: 1px;
-  border-color: white black black white;
   text-align: center;
 }
 #slider-text {
-  color: rgb(240, 73, 231);
+  color: rgb(0, 255, 0);
   margin: 7px 0;
   font-size: 20px;
 }
@@ -388,23 +505,23 @@ input[type="color"]::-webkit-color-swatch {
   -webkit-appearance: none;
   width: 100%;
   appearance: none;
-  background-color: rgb(240, 73, 231);
-  color: rgb(240, 73, 231);
+  background-color: rgb(0, 255, 0);
+  color: rgb(0, 255, 0);
   height: 1.5px;
 }
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
-  background-color: rgb(240, 73, 231);
-  color: rgb(240, 73, 231);
+  background-color: rgb(0, 255, 0);
+  color: rgb(0, 255, 0);
   width: 16px;
   height: 16px;
   border-radius: 50%;
 }
 .slider::-moz-range-thumb {
   cursor: pointer;
-  background-color: rgb(240, 73, 231);
+  background-color: rgb(0, 255, 0);
 }
 #text-input-container {
   margin: 32px 26px;
@@ -417,31 +534,31 @@ input[type="color"]::-webkit-color-swatch {
   -webkit-appearance: none;
   border: none;
   outline: none;
-  text-align: end;
+  text-align: center;
   position: relative;
   font-size: 250px;
   background-color: transparent;
   overflow: visible;
-  /* outline: 1px dashed black; */
-  /* outline-offset: -50px;
-  padding-left: 50px; */
+  /* outline: 1px dashed black;
+  outline-offset: -100px;
+  padding-left: 100px; */
 }
 #racing-container {
   width: 100%;
-  margin-top: 60px;
+  margin-top: 35px;
 }
 .racing-row {
   border-top: 1px solid black;
   position: relative;
   height: auto;
+  line-height: 54px;
 }
 .racing-speed {
-  height: 100%;
-  font-size: 16px;
-  margin-left: 45px;
-  color: cyan;
-  z-index: 20;
-  text-shadow: #333333 1px 1px 3px;
+  margin: 0 0 0 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
 }
 .racing-text {
   font-weight: normal;
@@ -454,7 +571,7 @@ input[type="color"]::-webkit-color-swatch {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-100vw);
+    transform: translateX(-200vw);
   }
 }
 @keyframes slider {
@@ -464,5 +581,21 @@ input[type="color"]::-webkit-color-swatch {
   to {
     transform: translateX(-100%);
   }
+}
+
+#dialog {
+  position: absolute;
+  width: 650px;
+  height: 350px;
+  background-color: rgb(0, 255, 0);
+  top: 80px;
+  right: 45px;
+  z-index: 50;
+  border: 2px black solid;
+  padding: 15px;
+  font-family: Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-size: 14pt;
 }
 </style>
